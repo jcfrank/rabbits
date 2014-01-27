@@ -17,18 +17,20 @@ class Rabbit(object):
 def count_rabbits(months):
     r1 = Rabbit()
     r2 = Rabbit()
-    rabbits = (r1, r2)
-    
+    rabbits = [r1, r2]
+
     for month in range(1, months + 1):
         pair = 0
+        new_rabbits = []
         for rabbit in rabbits:
             rabbit.grow()
             if not rabbit.is_adult():
                 continue
             pair += 1
             if pair >= 2:
-                rabbits = rabbits + (Rabbit(), Rabbit())
+                new_rabbits += [Rabbit(), Rabbit()]
                 pair = 0
+        rabbits = rabbits + new_rabbits
 
     return len(rabbits)
 
