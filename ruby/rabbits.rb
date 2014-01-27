@@ -13,8 +13,7 @@ def count_rabbits_2(months)
     new_rabbits = adult_rabbits
   end
 
-  total = adult_rabbits + m2_rabbits + m1_rabbits + new_rabbits
-  total
+  adult_rabbits + m2_rabbits + m1_rabbits + new_rabbits
 end
 
 # Main
