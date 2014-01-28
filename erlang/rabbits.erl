@@ -1,15 +1,12 @@
 -module(rabbits).
--export([main/0]).
+-export([main/1]).
 
-main() ->
-    Count = count_rabbits(1),
-    io:fwrite("Month 1, rabbits ~w~n", [Count]),
-    Count2 = count_rabbits(17),
-    io:fwrite("Month 17, rabbits ~w~n", [Count2]),
-    Count3 = count_rabbits(24),
-    io:fwrite("Months 24, rabbits ~w~n", [Count3]),
-    Count4 = count_rabbits(33),
-    io:fwrite("Months 33, rabbits ~w~n", [Count4]).
+main(Number) ->
+    Start = now(),
+    Result = count_rabbits(Number),
+    End = now(),
+    TimeDiff = timer:now_diff(End, Start)/1000000,
+    {TimeDiff, Result}.
 
 count_rabbits(Months) ->
     count_rabbits(Months, 2, 0, 0, 0).
