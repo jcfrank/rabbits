@@ -24,15 +24,11 @@ def rabbits_recur(months):
 
 # tail recursive. Meaningless in Python, but better for languages support tail recursive elimination.
 def rabbits_tail_recur(months):
-    return _do_tail_recur(months, 2, 2, 0)
+    return _do_tail_recur(months, 2, 0, 0)
 
 def _do_tail_recur(months, one_month, two_month, adults):
     if months == 0:
-        return adults + one_month
-    elif months == 1:
-        return _do_tail_recur(months - 1, 0, 0, adults + one_month)
-    elif months == 2:
-        return _do_tail_recur(months - 1, 0, adults, adults + one_month)
+        return one_month + two_month + adults
     else:
         return _do_tail_recur(months - 1, adults, one_month, adults + two_month)
 
