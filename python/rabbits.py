@@ -1,41 +1,42 @@
 #!/usr/bin/env python3.3
 
 """
-class Rabbit(object):
-    def __init__(self):
-        self._age = 0
-
-    @property
-    def age(self):
-        return self._age
-
-    def grow(self):
-        self._age += 1
-
-    def is_adult(self):
-        return self._age >= 3
-
-def count_rabbits(months):
-    r1 = Rabbit()
-    r2 = Rabbit()
-    rabbits = [r1, r2]
-
-    for month in range(1, months + 1):
-        pair = 0
-        new_rabbits = []
-        for rabbit in rabbits:
-            rabbit.grow()
-            if not rabbit.is_adult():
-                continue
-            pair += 1
-            if pair >= 2:
-                new_rabbits += [Rabbit(), Rabbit()]
-                pair = 0
-        rabbits = rabbits + new_rabbits
-
-    return len(rabbits)
+2
+2
+2
+4
+6
+8
+12
+18
+26
+...
+f(n) = f(n-1) + f(n-3)
 """
 
+# It's similar to fibonacci, but somewhat different.
+# recursive version
+def rabbits_recur(months):
+    if months <= 2:
+        return 2
+    else:
+        return rabbits_recur(months - 1) + rabbits_recur(months - 3)
+
+# tail recursive. Meaningless in Python, but better for languages support tail recursive elimination.
+def rabbits_tail_recur(months):
+    return _do_tail_recur(months, 2, 2, 0)
+
+def _do_tail_recur(months, one_month, two_month, adults):
+    if months == 0:
+        return adults + one_month
+    elif months == 1:
+        return _do_tail_recur(months - 1, 0, 0, adults + one_month)
+    elif months == 2:
+        return _do_tail_recur(months - 1, 0, adults, adults + one_month)
+    else:
+        return _do_tail_recur(months - 1, adults, one_month, adults + two_month)
+
+# iterative
 def count_rabbits_2(months):
     new_rabbits = 2
     m1_rabbots = 0
