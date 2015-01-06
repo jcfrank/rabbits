@@ -6,8 +6,10 @@ main(Number) ->
     Result = count_rabbits(Number),
     End = now(),
     TimeDiff = timer:now_diff(End, Start)/1000000,
+    io:format("Result: ~w~n", [Result]),
     {TimeDiff, Result}.
 
+% this is the same as tail recursive version
 count_rabbits(Months) ->
     count_rabbits(Months, 2, 0, 0, 0).
 
